@@ -1,7 +1,12 @@
 # hrmw
 A middleware method for [httprouter](#https://github.com/julienschmidt/httprouter) like nodejs express
 
-## usage
+## Install
+```
+go get github.com/swordwinter/hrmw
+```
+
+## Usage
 ```go
 package main
 
