@@ -27,8 +27,9 @@ func come(w http.ResponseWriter, r *http.Request, _ httprouter.Params, m *hrmw.M
     fmt.Fprintf(w, "come!\n")
 }
 
-func test(w http.ResponseWriter, r *http.Request, _ httprouter.Params, m *hrmw.Middleware) {
+func test(w http.ResponseWriter, r *http.Request, ps httprouter.Params, m *hrmw.Middleware) {
     fmt.Fprintf(w, "test")
+	m.Next(w, r, ps)
 }
 
 func main() {
