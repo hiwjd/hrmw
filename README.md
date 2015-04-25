@@ -27,9 +27,17 @@ func come(w http.ResponseWriter, r *http.Request, _ httprouter.Params, m *hrmw.M
     fmt.Fprintf(w, "come!\n")
 }
 
+func test(w http.ResponseWriter, r *http.Request, _ httprouter.Params, m *hrmw.Middleware) {
+    fmt.Fprintf(w, "test")
+}
+
 func main() {
     router := httprouter.New()
-    router.GET("/", hrmw.Use(wel, come))
+    router.GET("/", hrmw.Use(wel, come)) // Welcome!
+	
+	pattern := hrmw.NewPattern().First(wel).Last(come)
+
+	router.GET("/test", pattern.Use(test)) // Weltestcome!
 
     log.Fatal(http.ListenAndServe(":8080", router))
 }
