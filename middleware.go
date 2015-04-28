@@ -33,7 +33,9 @@ func (m *Middleware) Set(key string, v interface{}) {
 }
 
 func (m *Middleware) Get(key string) interface{} {
-	return m.data[key]
+	v := m.data[key]
+	delete(m.data, key)
+	return v
 }
 
 func Use(handlers ...MiddlewareHandle) httprouter.Handle {
